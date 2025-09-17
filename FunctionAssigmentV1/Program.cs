@@ -1,16 +1,12 @@
-﻿namespace FunctionAssigmentV1
+﻿using System.Xml.Linq;
+
+namespace FunctionAssigmentV1
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static string KysyNimi()
         {
-            // Everything is intentionally inside Main before refactoring to functions
-            //Your job is to refactor this code to use functions for better readability and reusability.
-            //Check learn on how to do this
-            string name = "";
-            int age = 0;
-
-            // Ask for name and ensure it is not empty
+            string name;
             while (true)
             {
                 Console.Write("Enter your name: ");
@@ -19,9 +15,14 @@
                     break;
                 else
                     Console.WriteLine("Name cannot be empty.");
+                
             }
+            return name;
+        }
 
-            // Ask for age and ensure it is a positive integer
+        static int KysyIka()
+        {
+            int age;
             while (true)
             {
                 Console.Write("Enter your age: ");
@@ -31,6 +32,24 @@
                 else
                     Console.WriteLine("Please enter a positive integer.");
             }
+            return age;
+        }
+
+        static void Main(string[] args)
+        {
+            // Everything is intentionally inside Main before refactoring to functions
+            //Your job is to refactor this code to use functions for better readability and reusability.
+            //Check learn on how to do this
+            
+            
+
+            // Ask for name and ensure it is not empty
+           
+            string name = KysyNimi();
+
+            // Ask for age and ensure it is a positive integer
+           
+            int age = KysyIka();
 
             // Print name and age
             Console.WriteLine($"Your name is {name} and your age is {age}.");
