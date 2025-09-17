@@ -83,30 +83,16 @@ namespace FunctionAssigmentV1
 
         static void Main(string[] args)
         {
-            // Everything is intentionally inside Main before refactoring to functions
-            //Your job is to refactor this code to use functions for better readability and reusability.
-            //Check learn on how to do this
-            
-            
-
+        
             // Ask for name and ensure it is not empty
-           
             string name = KysyNimi();
-
             // Ask for age and ensure it is a positive integer
-           
             int age = KysyIka();
-
             // Print name and age
-         
             TulostaNimiJaIka(name, age);
-
-            // Check if the user is an adult
-            
+            // Check if the user is an adult         
             TarkistaTaysiIkainen(age);
-
             // Compare the name to another string (e.g., "Matti")
-            
             VertaaNimea(name, "Matti");
 
            
