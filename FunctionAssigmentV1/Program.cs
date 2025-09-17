@@ -49,18 +49,30 @@ namespace FunctionAssigmentV1
         /// Tulostaa Nimen ja Iän
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="age"></param>
+        /// <param age="age"></param>
 
         static void TulostaNimiJaIka(string name, int age)
         {
             Console.WriteLine($"Your name is {name} and your age is {age}.");
         }
 
+        /// <summary>
+        /// Tarkistaa onko käyttäjä täysi-ikäinen
+        /// </summary>
+        /// <param name="age"></param>
+        /// <returns>Antaa varmistuksen</returns>
+
         static bool TarkistaTaysiIkainen(int age)
         {
             return age >= 18;
         }
 
+        /// <summary>
+        /// Vertaa nimeä toiseen merkkijonoon
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="compareTo"></param>
+        
         static void VertaaNimea(string name, string compareTo)
         {
             if (name.Equals(compareTo, StringComparison.OrdinalIgnoreCase))
