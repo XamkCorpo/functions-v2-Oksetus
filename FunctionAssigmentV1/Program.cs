@@ -1,16 +1,17 @@
-﻿namespace FunctionAssigmentV1
+﻿using System.Xml.Linq;
+
+namespace FunctionAssigmentV1
 {
     internal class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Kysyy käyttäjältä nimen, kunnes se ei ole tyhjä
+        /// </summary>
+        /// <returns>Antaa nimen</returns>
+       
+        static string KysyNimi()
         {
-            // Everything is intentionally inside Main before refactoring to functions
-            //Your job is to refactor this code to use functions for better readability and reusability.
-            //Check learn on how to do this
-            string name = "";
-            int age = 0;
-
-            // Ask for name and ensure it is not empty
+            string name;
             while (true)
             {
                 Console.Write("Enter your name: ");
@@ -19,9 +20,19 @@
                     break;
                 else
                     Console.WriteLine("Name cannot be empty.");
+                
             }
+            return name;
+        }
 
-            // Ask for age and ensure it is a positive integer
+        /// <summary>
+        /// Kysyy ikää , kunnes se on positiivinen kokonaisluku
+        /// </summary>
+        /// <returns>Antaa iän</returns>
+       
+        static int KysyIka()
+        {
+            int age;
             while (true)
             {
                 Console.Write("Enter your age: ");
@@ -31,26 +42,60 @@
                 else
                     Console.WriteLine("Please enter a positive integer.");
             }
+            return age;
+        }
 
-            // Print name and age
+        /// <summary>
+        /// Tulostaa Nimen ja Iän
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param age="age"></param>
+
+        static void TulostaNimiJaIka(string name, int age)
+        {
             Console.WriteLine($"Your name is {name} and your age is {age}.");
+        }
 
-            // Check if the user is an adult
-            if (age >= 18)
-                Console.WriteLine("You are an adult.");
-            else
-                Console.WriteLine("You are not an adult.");
+        /// <summary>
+        /// Tarkistaa onko käyttäjä täysi-ikäinen
+        /// </summary>
+        /// <param name="age"></param>
+        /// <returns>Antaa varmistuksen</returns>
 
+        static bool TarkistaTaysiIkainen(int age)
+        {
+            return age >= 18;
+        }
+
+        /// <summary>
+        /// Vertaa nimeä toiseen merkkijonoon
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="compareTo"></param>
+        
+        static void VertaaNimea(string name, string compareTo)
+        {
+            if (name.Equals(compareTo, StringComparison.OrdinalIgnoreCase))
+                Console.WriteLine($"Your name matches '{compareTo}' (case-insensitive).");
+            if (name.Equals(compareTo))
+                Console.WriteLine($"Your name is exactly '{compareTo}' (case-sensitive).");
+        }
+
+        static void Main(string[] args)
+        {
+        
+            // Ask for name and ensure it is not empty
+            string name = KysyNimi();
+            // Ask for age and ensure it is a positive integer
+            int age = KysyIka();
+            // Print name and age
+            TulostaNimiJaIka(name, age);
+            // Check if the user is an adult         
+            TarkistaTaysiIkainen(age);
             // Compare the name to another string (e.g., "Matti")
-            string compareName = "Matti";
+            VertaaNimea(name, "Matti");
 
-            // Comparison ignoring case
-            if (name.Equals(compareName, StringComparison.OrdinalIgnoreCase))
-                Console.WriteLine("Your name matches 'Matti' (case-insensitive).");
-
-            // Exact match comparison (case-sensitive)
-            if (name.Equals(compareName))
-                Console.WriteLine("Your name is exactly 'Matti' (case-sensitive).");
+           
         }
     }
 }
