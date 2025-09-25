@@ -25,15 +25,15 @@
                 {
                     case "1":
                         result = PlusLasku(num1, num2);
-                        Console.WriteLine($"{num1} + {num2} = " + result);
+                        TulostaTulos(num1, num2, "+", result);
                         break;
                     case "2":
                         result = MiinusLasku(num1, num2);
-                        Console.WriteLine($"{num1} - {num2} = " + result);
+                        TulostaTulos(num1, num2, "-", result);
                         break;
                     case "3":
                         result = KertoLasku(num1, num2);
-                        Console.WriteLine($"{num1} * {num2} = " + result);
+                        TulostaTulos(num1, num2, "*", result);
                         break;
                     case "4":
                         result = JakoLasku(num1, num2);
@@ -41,6 +41,7 @@
                         {
                             continue;
                         }
+                        TulostaTulos(num1, num2, "/", result);
                         break;
                     default:
                         Console.WriteLine("Invalid operation selected.");
@@ -50,22 +51,40 @@
             }
             
         }
+
+        /// <summary>
+        /// Outputs the result to the console. 
+        /// </summary>
+        /// <param name="num1"></param>
+        /// <param name="num2"></param>
+        /// <param name="operation"></param>
+        /// <param name="result"></param>
+        private static void TulostaTulos(double num1, double num2, string operation, double result)
+        {
+            Console.WriteLine($"{num1} {operation} {num2} = {result}");
+        }
+
         /// <summary>
         /// Divides 1st number by 2nd number and returns the result. Handles division by zero.
         /// </summary>
         /// <param name="num1"></param>
         /// <param name="num2"></param>
         /// <returns>Result</returns>
+        /// 
+
+        // Tämä JakoLasku funktio oli hankala saada toimimaan koska tein tämän alunperin eri tavalla ja se ei toimunut millään ja vahdoin sen tähän tyyliin. Yritin alussa saada funktion sillä tyylillä että 0 != num2 mutta en saanut sitä toimimaan.
         private static double JakoLasku(double num1, double num2)
         
         {
             if (num2 == 0)
             {
                 Console.WriteLine("Error: Division by zero is not allowed.");
-                return double.NaN; // Return NaN to indicate an error. This function was hard to get working.
+                return double.NaN; // Return NaN.
             }
             return num1 / num2;
         }
+
+
         /// <summary>
         /// Multiplies 1st and 2nd number and returns the result.
         /// </summary>
@@ -76,6 +95,8 @@
         {
             return num1 * num2;
         }
+
+
         /// <summary>
         /// It Subtracts 1st number from 2nd number and returns the result.
         /// </summary>
@@ -97,6 +118,7 @@
             return num1 + num2;
         }
 
+
         /// <summary>
         /// Asks the user for the second number.
         /// </summary>
@@ -117,6 +139,7 @@
             double num1 = Convert.ToDouble(Console.ReadLine());
             return num1;
         }
+
 
         /// <summary>
         /// Chooses the operation for the calculator.
