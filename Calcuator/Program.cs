@@ -10,14 +10,8 @@
 
                 ValitseLaskutoimitus(out operation);
 
-                if (operation != "1" && operation != "2" && operation != "3" && operation != "4")
-                {
-                    Console.WriteLine("Invalid operation. Please try again.");
-                    continue;
-                }
-
-                double num1 = KysyLuku1();
-                double num2 = KysyLuku2();
+                double num1 = KysyLuku("Give first number");
+                double num2 = KysyLuku("Give second number");
 
                 double result;
 
@@ -47,9 +41,13 @@
                         Console.WriteLine("Invalid operation selected.");
                         continue;        
                 }
-                break;  
+                break;
+
+                
             }
-            
+
+            Console.WriteLine("Press \"Enter\" to close the application");
+            Console.ReadLine();
         }
 
         /// <summary>
@@ -73,6 +71,7 @@
         /// 
 
         // Tämä JakoLasku funktio oli hankala saada toimimaan koska tein tämän alunperin eri tavalla ja se ei toimunut millään ja vahdoin sen tähän tyyliin. Yritin alussa saada funktion sillä tyylillä että 0 != num2 mutta en saanut sitä toimimaan.
+        //Tässä vaiheessa joutuu vielä nojaamaan aika paljon apuvälineisiin. Googleen ja tekoälyyn, mutta olen tässä oppinutkin jo paljon.
         private static double JakoLasku(double num1, double num2)
         
         {
@@ -108,7 +107,7 @@
             return num1 - num2;
         }
         /// <summary>
-        /// Adds two double-precision floating-point numbers and returns the result.
+        /// Adds 1st and 2nd number and returns the result.
         /// </summary>
         /// <param name="num1">The first number to add.</param>
         /// <param name="num2">The second number to add.</param>
@@ -119,44 +118,54 @@
         }
 
 
-        /// <summary>
-        /// Asks the user for the second number.
-        /// </summary>
-        /// <returns>Second number</returns>
-        private static double KysyLuku2()
-        {
-            Console.WriteLine("Give second number.");
-            double num2 = Convert.ToDouble(Console.ReadLine());
-            return num2;
-        }
+        
         /// <summary>
         /// Asks the user for the first number.
         /// </summary>
         /// <returns>First number</returns>
-        private static double KysyLuku1()
+        private static double KysyLuku(string message)
         {
-            Console.WriteLine("Give first number.");
-            double num1 = Convert.ToDouble(Console.ReadLine());
-            return num1;
+            double number;
+            while(true)
+            {
+                Console.WriteLine(message);
+                string input = Console.ReadLine();
+                if (double.TryParse(input, out number))
+                {
+                    return number;
+                }
+                else
+                {
+                    message = "Invalid input. Please enter a valid number.";
+                }
+            }
         }
 
 
         /// <summary>
-        /// Chooses the operation for the calculator.
+        /// Chooses the operation for the calculator. Makes sure the operation is valid.
         /// </summary>
         /// <param>Gives the operation back in it's number place="operation"</param>
         private static void ValitseLaskutoimitus(out string? operation)
         {
-            Console.WriteLine("Choose operation:");
-            Console.WriteLine("1. Add (+)");
-            Console.WriteLine("2. Subtract (-)");
-            Console.WriteLine("3. Multiply (*)");
-            Console.WriteLine("4. Divide (/)");
+            while (true)
+            {
+                Console.WriteLine("Choose operation:");
+                Console.WriteLine("1. Add (+)");
+                Console.WriteLine("2. Subtract (-)");
+                Console.WriteLine("3. Multiply (*)");
+                Console.WriteLine("4. Divide (/)");
 
-            operation = Console.ReadLine();
-            Console.WriteLine($"You chose {operation}.");
-            return;
+                operation = Console.ReadLine();
+                Console.WriteLine($"You chose {operation}.");
 
+                if (operation != "1" && operation != "2" && operation != "3" && operation != "4")
+                {
+                    Console.WriteLine("Invalid operation. Please try again.");
+                    continue;
+                }
+                return;
+            }
         }
     }
 }
